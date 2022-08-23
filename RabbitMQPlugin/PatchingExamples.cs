@@ -40,25 +40,39 @@ namespace RabbitMQPlugin
         //    }
         //}
 
-
         //public static MethodInfo SendMessage;
-
-        //TODO change this guid to be whatever it actually is, do this when torch session is loaded 
-        //if (Session.Managers.GetManager<PluginManager>().Plugins.TryGetValue(Guid.Parse("74796707-646f-4ebd-8700-d077a5f47af3"), out var mq))
-        //{
-        //    var mq = all.GetType().Assembly.GetType("RabbitMQPlugin.Core");
-        //    try
-        //    {
-        //        SendMessage = mq.GetType().GetMethod("SendMessage", BindingFlags.Public | BindingFlags.Instance, null, new Type[2] { typeof(string), typeof(string)}, null);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //     
-        //    }
-        //}
+        //public bool MQPluginInstalled = false;
 
         //how to invoke
         //var methodInput = new object[] { MessageType, JsonMessageBody };
         //SendMessage.Invoke(null, methodInput);
+
+        //private void SessionChanged(ITorchSession session, TorchSessionState newState)
+        //{
+        //    switch (newState)
+        //    {
+        //        case TorchSessionState.Loaded:
+        //        {
+        //            TODO change this guid to be whatever it actually is, do this when torch session is loaded
+        //            if (Session.Managers.GetManager<PluginManager>().Plugins
+        //                .TryGetValue(Guid.Parse("319afed6-6cf7-4865-81c3-cc207b70811d"), out var mq))
+        //            {
+        //                var mq = all.GetType().Assembly.GetType("RabbitMQPlugin.Core");
+        //                try
+        //                {
+        //                    SendMessage = mq.GetType().GetMethod("SendMessage",
+        //                        BindingFlags.Public | BindingFlags.Instance, null,
+        //                        new Type[2] { typeof(string), typeof(string) }, null);
+        //                    MQPluginInstalled = true;
+        //                }
+        //                catch (Exception ex)
+        //                {
+
+        //                }
+        //            }
+        //        }
+        //            break;
+        //    }
+        //}
     }
 }

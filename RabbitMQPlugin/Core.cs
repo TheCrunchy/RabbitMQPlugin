@@ -23,6 +23,7 @@ using Torch.API.Session;
 using Torch.Managers;
 using Torch.Managers.PatchManager;
 using Torch.Session;
+using VRage.GameServices;
 
 namespace RabbitMQPlugin
 {
@@ -30,7 +31,7 @@ namespace RabbitMQPlugin
     {
         public Logger Log = LogManager.GetLogger("RabbitMQ");
         public static Logger MessageLog = LogManager.GetLogger("MessageLog");
-
+        public Action<string, string> HandleMessage;
         public static void ApplyLogging()
         {
 
@@ -129,6 +130,7 @@ namespace RabbitMQPlugin
                     Channel.BasicConsume(queue: queueName,
                         autoAck: true,
                         consumer: consumer);
+                    HandleMessage += MessageHandler;
                     break;
                 }
                 case TorchSessionState.Unloading:
@@ -175,7 +177,7 @@ namespace RabbitMQPlugin
                 var MessageBody = Message.MessageBodyJsonString;
 
                 MessageLog.Info($"Recieved: {MessageType} {MessageBody}");
-                HandleMessage(MessageType, MessageBody);
+                HandleMessage.Invoke(MessageType, MessageBody);
             }
             catch (Exception ex)
             {
@@ -184,7 +186,7 @@ namespace RabbitMQPlugin
         }
 
         //patch this for recieving, you wont need to import any rabbit mq stuff 
-        public void HandleMessage(string MessageType, string MessageBody)
+        public void MessageHandler(string MessageType, string MessageBody)
         {
             //probably make yourself some enums for messagetype and use a switch statement 
             MessageLog.Info($"Handled: {MessageType} {MessageBody}");

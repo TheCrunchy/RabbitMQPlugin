@@ -12,31 +12,26 @@ namespace RabbitMQPlugin
 {
     public class PatchingExamples
     {
-        //[PatchShim]
-        //public class MQPluginPatch
+        //public static class MQPluginPatch
         //{
-        //    internal static readonly MethodInfo HandleMessageMethod = Type.GetType("RabbitMQPlugin.Core").GetMethod("HandleMessage", BindingFlags.Instance | BindingFlags.Public);
         //    internal static readonly MethodInfo HandleMessagePatch = typeof(MQPluginPatch).GetMethod(nameof(HandleMessage), BindingFlags.Static | BindingFlags.Public) ??
         //                                                             throw new Exception("Failed to find patch method");
 
         //    private static Dictionary<string, Action<string>> Handlers = new Dictionary<string, Action<string>>();
         //    public static void Patch(PatchContext ctx)
         //    {
+        //        var HandleMessageMethod = AlliancePlugin.MQ.GetType().GetMethod("MessageHandler", BindingFlags.Instance | BindingFlags.Public);
         //        if (HandleMessageMethod == null) return;
 
         //        ctx.GetPattern(HandleMessageMethod).Suffixes.Add(HandleMessagePatch);
-        //        Handlers.Add("ExampleHandle1", HandleExample1);
-        //        Handlers.Add("ExampleHandle2", HandleExample2);
+        //        Handlers.Add("Test", HandleExample1);
         //    }
 
         //    public static void HandleExample1(string MessageBody)
         //    {
-        //        //do something here 
+        //        Do something here, maybe log to check it works
         //    }
-        //    public static void HandleExample2(string MessageBody)
-        //    {
-        //        //do something different here 
-        //    }
+
         //    public static void HandleMessage(string MessageType, string MessageBody)
         //    {
         //        if (Handlers.TryGetValue(MessageType, out var action))
@@ -46,12 +41,35 @@ namespace RabbitMQPlugin
         //    }
         //}
 
+
+        //When you send a message, the server sending also receives it
+        //so either do the logic only when receiving, or store a list of sent IDs in the object, if the incoming has that id, ignore it
+        //public static ITorchPlugin MQ;
         //public static MethodInfo SendMessage;
         //public bool MQPluginInstalled = false;
 
         //how to invoke
-        //var methodInput = new object[] { MessageType, JsonMessageBody };
-        //SendMessage.Invoke(null, methodInput);
+        //    if (MQPluginInstalled)
+        //    {
+        //        var input = JsonConvert.SerializeObject("Test Message");
+        //        var methodInput = new object[] { "Test", input };
+        //        SendMessage?.Invoke(MQ, methodInput);
+        //    }
+
+        //public static void InitMQ(PluginManager Plugins, PatchManager Patches)
+        //{
+
+        //    if (Plugins.Plugins.TryGetValue(Guid.Parse("319afed6-6cf7-4865-81c3-cc207b70811d"), out var MQPlugin))
+        //    {
+        //        SendMessage = MQPlugin.GetType().GetMethod("SendMessage", BindingFlags.Public | BindingFlags.Instance, null, new Type[2] { typeof(string), typeof(string) }, null);
+        //        MQ = MQPlugin;
+
+        //        RabbitTest.MQPluginPatch.Patch(Patches.AcquireContext());
+        //        Patches.Commit();
+
+        //        MQPluginInstalled = true;
+        //    }
+        //}
 
         //private void SessionChanged(ITorchSession session, TorchSessionState newState)
         //{
@@ -59,25 +77,9 @@ namespace RabbitMQPlugin
         //    {
         //        case TorchSessionState.Loaded:
         //        {
-        //            TODO change this guid to be whatever it actually is, do this when torch session is loaded
-        //            if (Session.Managers.GetManager<PluginManager>().Plugins
-        //                .TryGetValue(Guid.Parse("319afed6-6cf7-4865-81c3-cc207b70811d"), out var mq))
-        //            {
-        //                var mq = all.GetType().Assembly.GetType("RabbitMQPlugin.Core");
-        //                try
-        //                {
-        //                    SendMessage = mq.GetType().GetMethod("SendMessage",
-        //                        BindingFlags.Public | BindingFlags.Instance, null,
-        //                        new Type[2] { typeof(string), typeof(string) }, null);
-        //                    MQPluginInstalled = true;
-        //                }
-        //                catch (Exception ex)
-        //                {
-
-        //                }
-        //            }
+        //            InitMQ(Torch.Managers.GetManager<PluginManager>(), Torch.Managers.GetManager<PatchManager>());
         //        }
-        //            break;
+        //        break;
         //    }
         //}
     }

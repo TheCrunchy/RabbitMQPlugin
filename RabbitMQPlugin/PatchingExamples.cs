@@ -18,24 +18,30 @@ namespace RabbitMQPlugin
         //    internal static readonly MethodInfo HandleMessageMethod = Type.GetType("RabbitMQPlugin.Core").GetMethod("HandleMessage", BindingFlags.Instance | BindingFlags.Public);
         //    internal static readonly MethodInfo HandleMessagePatch = typeof(MQPluginPatch).GetMethod(nameof(HandleMessage), BindingFlags.Static | BindingFlags.Public) ??
         //                                                             throw new Exception("Failed to find patch method");
+
+        //    private static Dictionary<string, Action<string>> Handlers = new Dictionary<string, Action<string>>();
         //    public static void Patch(PatchContext ctx)
         //    {
-        //        if (HandleMessageMethod != null)
-        //        {
-        //            ctx.GetPattern(HandleMessageMethod).Suffixes.Add(HandleMessagePatch);
-        //        }
+        //        if (HandleMessageMethod == null) return;
+
+        //        ctx.GetPattern(HandleMessageMethod).Suffixes.Add(HandleMessagePatch);
+        //        Handlers.Add("ExampleHandle1", HandleExample1);
+        //        Handlers.Add("ExampleHandle2", HandleExample2);
         //    }
 
+        //    public static void HandleExample1(string MessageBody)
+        //    {
+        //        //do something here 
+        //    }
+        //    public static void HandleExample2(string MessageBody)
+        //    {
+        //        //do something different here 
+        //    }
         //    public static void HandleMessage(string MessageType, string MessageBody)
         //    {
-        //        switch (MessageType)
+        //        if (Handlers.TryGetValue(MessageType, out var action))
         //        {
-        //            case "ExampleType1":
-        //                return;
-        //            case "ExampleType2":
-        //                return;
-        //            default:
-        //                return;
+        //            action.Invoke(MessageBody);
         //        }
         //    }
         //}

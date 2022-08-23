@@ -29,7 +29,7 @@ namespace RabbitMQPlugin
     public class Core : TorchPluginBase
     {
         public Logger Log = LogManager.GetLogger("RabbitMQ");
-        public Logger MessageLog = LogManager.GetLogger("MessageLog");
+        public static Logger MessageLog = LogManager.GetLogger("MessageLog");
 
         public static void ApplyLogging()
         {
@@ -94,7 +94,7 @@ namespace RabbitMQPlugin
             ApplyLogging();
         }
 
-        private IModel Channel { get; set; }
+        public static IModel Channel { get; set; }
         private string ExchangeName { get; set; } = "GenericJson";
         private void SessionChanged(ITorchSession session, TorchSessionState newState)
         {

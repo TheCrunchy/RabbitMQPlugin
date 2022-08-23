@@ -45,8 +45,6 @@ namespace RabbitMQPlugin
                     rules.RemoveAt(i);
             }
 
-
-
             var logTarget = new FileTarget
             {
                 FileName = "Logs/MessageLog-" + DateTime.Now.Day + "-" + DateTime.Now.Month + "-" + DateTime.Now.Year + ".txt",

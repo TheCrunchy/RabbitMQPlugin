@@ -15,7 +15,7 @@ namespace RabbitMQPlugin
         //[PatchShim]
         //public class MQPluginPatch
         //{
-        //    internal static readonly MethodInfo HandleMessageMethod = Type.GetType("RabbitMQPlugin.Core").GetMethod("HandleMessage", BindingFlags.Instance | BindingFlags.NonPublic);
+        //    internal static readonly MethodInfo HandleMessageMethod = Type.GetType("RabbitMQPlugin.Core").GetMethod("HandleMessage", BindingFlags.Instance | BindingFlags.Public);
         //    internal static readonly MethodInfo HandleMessagePatch = typeof(MQPluginPatch).GetMethod(nameof(HandleMessage), BindingFlags.Static | BindingFlags.Public) ??
         //                                                             throw new Exception("Failed to find patch method");
         //    public static void Patch(PatchContext ctx)

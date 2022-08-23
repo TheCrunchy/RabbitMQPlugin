@@ -20,7 +20,7 @@ namespace RabbitMQPlugin
         //    private static Dictionary<string, Action<string>> Handlers = new Dictionary<string, Action<string>>();
         //    public static void Patch(PatchContext ctx)
         //    {
-        //        var HandleMessageMethod = AlliancePlugin.MQ.GetType().GetMethod("MessageHandler", BindingFlags.Instance | BindingFlags.Public);
+        //        var HandleMessageMethod = MQ.GetType().GetMethod("MessageHandler", BindingFlags.Instance | BindingFlags.Public);
         //        if (HandleMessageMethod == null) return;
 
         //        ctx.GetPattern(HandleMessageMethod).Suffixes.Add(HandleMessagePatch);

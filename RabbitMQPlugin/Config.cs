@@ -8,10 +8,10 @@ namespace RabbitMQPlugin
 {
     public class Config
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Username { get; set; } = "guest";
+        public string Password { get; set; } = "guest";
         public string Hostname { get; set; } = "localhost";
-        public int Port { get; set; }
+        public int Port { get; set; } = 5672;
 
     }
 }

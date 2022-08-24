@@ -2,5 +2,5 @@
 <PluginManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>RabbitMQPlugin</Name>
   <Guid>319afed6-6cf7-4865-81c3-cc207b70811d</Guid>
-  <Version>v1.2</Version>
+  <Version>v1.3</Version>
 </PluginManifest>
